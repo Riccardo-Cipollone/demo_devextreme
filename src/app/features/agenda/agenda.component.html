@@ -1,1 +1,5 @@
-<p>agenda works!</p>
+<h1>Test datagrid per tabella</h1>
+<!-- Tabella datagrid semplice per agenda -->
+<dx-data-grid id="gridContainer" [dataSource]="customers" keyExpr="ID" [showBorders]="true">
+    <dxi-column *ngFor="let column of columns" [dataField]="column"></dxi-column>
+</dx-data-grid>
