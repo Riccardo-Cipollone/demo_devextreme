@@ -1,0 +1,78 @@
+<dx-data-grid
+  id="gridContainer"
+  [allowColumnReordering]="false"
+  [allowColumnResizing]="false"
+  [dataSource]="gridSource"
+  (onCellPrepared)="onCellPrepared($event)"
+  [columnAutoWidth]="true"
+>
+  <dxi-column
+    [allowSorting]="false"
+    dataField="figure"
+    caption="Prof. figure"
+    cellTemplate="figureTemplate"
+    headerCellTemplate="titleHeaderTemplate"
+  ></dxi-column>
+  <dxi-column
+    [allowSorting]="false"
+    [width]="120"
+    dataField="actions"
+    caption="Actions"
+    cellTemplate="actionsTemplate"
+    headerCellTemplate="titleHeaderTemplate"
+  ></dxi-column>
+  <dxi-column
+    [allowSorting]="false"
+    [width]="120"
+    dataField="area"
+    caption="Practice / Discipline"
+    headerCellTemplate="titleHeaderTemplate"
+  ></dxi-column>
+  <dxi-column
+    [allowSorting]="false"
+    dataField="hours"
+    caption="H"
+    [width]="80"
+    cellTemplate="hoursTemplate"
+    headerCellTemplate="titleHeaderTemplate"
+  ></dxi-column>
+  @for(element of selectedQuarter; track $index){
+  <dxi-column
+    [allowSorting]="false"
+    [dataField]="element"
+    headerCellTemplate="dateHeaderTemplate"
+  ></dxi-column>
+  }
+
+  <div *dxTemplate="let info of 'figureTemplate'">
+    <div [appColoredBadge]="'#6679A0'">
+      {{ info.data["figure"] }}
+    </div>
+  </div>
+
+  <div *dxTemplate="let info of 'actionsTemplate'">
+    <!-- // TODO pipe per trasformare sto schifo -->
+    @for (item of info.data["actions"]; track $index) {
+    <!-- <div>{{ item }}</div> -->
+    <i class="dx-icon-{{ item.name }}" [ngStyle]="{ color: item.color }"></i>
+    }
+  </div>
+
+  <div *dxTemplate="let info of 'hoursTemplate'" [appColoredBadge]="'yellow'">
+    <!-- //TODO pipe per trasformare sto schifo -->
+    <div>{{ info.data["hours"].scheduled }}/{{ info.data["hours"].tot }}</div>
+  </div>
+
+  <div *dxTemplate="let info of 'titleHeaderTemplate'">
+    <div class="header-badge" [appColoredBadge]="'#1f4e79'">
+      {{ info.column.caption }}
+    </div>
+  </div>
+  <div *dxTemplate="let info of 'dateHeaderTemplate'">
+    <div class="header-date">
+      {{ info.column.dataField }}
+    </div>
+  </div>
+
+  dxi-row
+</dx-data-grid>

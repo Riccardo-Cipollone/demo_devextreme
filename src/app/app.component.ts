@@ -13,11 +13,23 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, DxToolbarModule, DxDrawerModule, DxListModule, DxRadioGroupModule],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CommonModule,
+    DxToolbarModule,
+    DxDrawerModule,
+    DxListModule,
+    DxRadioGroupModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  title = 'demo_devextreme';
+  test() {
+    alert('Zio pera');
+  }
 
   @ViewChild(DxDrawerComponent, { static: false }) drawer!: DxDrawerComponent;
 
@@ -33,13 +45,15 @@ export class AppComponent {
     this.navigation = service.getNavigationList();
   }
 
-  toolbarContent = [{
-    widget: 'dxButton',
-    location: 'before',
-    options: {
-      icon: 'menu',
-      stylingMode: 'text',
-      onClick: () => this.isDrawerOpen = !this.isDrawerOpen,
+  toolbarContent = [
+    {
+      widget: 'dxButton',
+      location: 'before',
+      options: {
+        icon: 'menu',
+        stylingMode: 'text',
+        onClick: () => (this.isDrawerOpen = !this.isDrawerOpen),
+      },
     },
-  }];
+  ];
 }
