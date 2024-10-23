@@ -14,10 +14,17 @@
       selectionMode="single"
       itemTemplate="links"
     >
+    <dx-list
+      [items]="navigation"
+      [width]="200"
+      selectionMode="single"
+      itemTemplate="links"
+    >
       <div *dxTemplate="let link of 'links'">
         <a [routerLink]="['/' + link.path]">
           <div>
             <div class="dx-list-item-icon-container">
+              <i class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"></i>
               <i class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"></i>
             </div>
             <span>{{ link.text }}</span>
@@ -30,3 +37,4 @@
     <router-outlet></router-outlet>
   </div>
 </dx-drawer>
+
