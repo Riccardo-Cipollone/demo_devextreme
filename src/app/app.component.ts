@@ -38,7 +38,7 @@ export class AppComponent {
   selectedOpenMode: DxDrawerTypes.OpenedStateMode = 'shrink';
   selectedPosition: DxDrawerTypes.PanelLocation = 'left';
   selectedRevealMode: DxDrawerTypes.RevealMode = 'slide';
-  isDrawerOpen = true;
+  isDrawerOpen = false;
 
   constructor(private service: MockService) {
     this.text = service.getContent();

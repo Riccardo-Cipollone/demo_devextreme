@@ -13,7 +13,14 @@
     <div>Filters goes here</div>
   </section>
 </header>
-<app-data-grid-container
-  [source]="dataSource$"
-  [isLoading]="isLoading"
-></app-data-grid-container>
+<dx-load-panel
+  [visible]="isLoading"
+  [shading]="true"
+  shadingColor="'#000000'"
+  [showPane]="false"
+>
+  <dxo-position at="center"> </dxo-position>
+</dx-load-panel>
+<main id="proposalContainer" style="height: 80vh">
+  <app-data-grid-container [source]="dataSource$"></app-data-grid-container>
+</main>

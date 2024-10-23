@@ -1,17 +1,16 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { DxDataGridModule, DxLoadPanelModule } from 'devextreme-angular';
+import { DxDataGridModule, DxTextBoxModule } from 'devextreme-angular';
 import { ColoredBadgeDirective } from '../colored-badge.directive';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
-import { Observable } from 'rxjs';
-import { PositionConfig } from 'devextreme/animation/position';
+import { EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-grid-container',
   standalone: true,
   imports: [
     DxDataGridModule,
-    DxLoadPanelModule,
+    DxTextBoxModule,
     AsyncPipe,
     NgStyle,
     ColoredBadgeDirective,
@@ -20,28 +19,25 @@ import { PositionConfig } from 'devextreme/animation/position';
   styleUrl: './data-grid-container.component.scss',
 })
 export class DataGridContainerComponent implements OnInit {
-  @Input('source') gridSource$!: Observable<any[]>;
-  @Input() isLoading: boolean = false;
+  @Input('source') gridSource$: Observable<any[]> = EMPTY;
 
   // loadPanelPosition: PositionConfig = { , at: 'center' };
-  selectedQuarter: string[] = [];
+  selectedQuarter: string[] = [
+    '7/10',
+    '14/10',
+    '21/10',
+    '28/10',
+    '04/11',
+    '11/11',
+    '18/11',
+    '25/11',
+    '02/12',
+    '09/12',
+    '16/12',
+    '23/12',
+  ];
 
-  ngOnInit(): void {
-    this.selectedQuarter = [
-      '7/10',
-      '14/10',
-      '21/10',
-      '28/10',
-      '04/11',
-      '11/11',
-      '18/11',
-      '25/11',
-      '02/12',
-      '09/12',
-      '16/12',
-      '23/12',
-    ];
-  }
+  ngOnInit(): void {}
 
   onCellPrepared(e: DxDataGridTypes.CellPreparedEvent) {
     e.cellElement.style.textAlign = 'center';

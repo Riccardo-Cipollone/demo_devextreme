@@ -15,7 +15,7 @@ export class ColoredBadgeDirective implements OnInit {
   @HostBinding('style.border') border: string = '';
 
   constructor() {
-    this.padding = '8px 16px';
+    this.padding = '8px 12px';
 
     this.radius = '12px';
     this.whiteSpace = 'pre-line';

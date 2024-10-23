@@ -2,14 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { DataGridContainerComponent } from '../../components/data-grid-container/data-grid-container.component';
 import { ActionButtonComponent } from '../../components/action-button/action-button.component';
 import { ProposalService } from '../../services/proposal.service';
-import { EMPTY, Observable, subscribeOn, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import CustomStore from 'devextreme/data/custom_store';
+
+import { DxLoadPanelModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-proposal-page',
   standalone: true,
-  imports: [DataGridContainerComponent, ActionButtonComponent, AsyncPipe],
+  imports: [
+    DataGridContainerComponent,
+    DxLoadPanelModule,
+    ActionButtonComponent,
+    AsyncPipe,
+  ],
   templateUrl: './proposal-page.component.html',
   styleUrl: './proposal-page.component.scss',
 })
@@ -17,6 +23,20 @@ export class ProposalPageComponent implements OnInit {
   dataSource$: Observable<any[]> = EMPTY;
   isLoading: boolean = false;
   sourceSubscription!: Subscription;
+  selectedQuarter: string[] = [
+    '7/10',
+    '14/10',
+    '21/10',
+    '28/10',
+    '04/11',
+    '11/11',
+    '18/11',
+    '25/11',
+    '02/12',
+    '09/12',
+    '16/12',
+    '23/12',
+  ];
   constructor(private proposalService: ProposalService) {}
 
   ngOnInit(): void {

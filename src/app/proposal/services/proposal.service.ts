@@ -94,7 +94,7 @@ export class ProposalService {
         { name: 'comment', color: '#ff8800' },
       ],
       area: null,
-      hours: { tot: 85, scheduled: 85 },
+      hours: { tot: 170, scheduled: 170 },
       // '7/10': 15,
       // '14/10': 15,
       // '21/10': 15,
@@ -147,6 +147,6 @@ export class ProposalService {
   ];
 
   get source(): Observable<any[]> {
-    return of(this.dataSource).pipe(delay(1000));
+    return of(this.dataSource).pipe(delay(2000));
   }
 }
