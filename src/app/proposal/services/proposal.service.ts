@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -147,6 +147,6 @@ export class ProposalService {
   ];
 
   get source(): Observable<any[]> {
-    return of(this.dataSource);
+    return of(this.dataSource).pipe(delay(1000));
   }
 }
