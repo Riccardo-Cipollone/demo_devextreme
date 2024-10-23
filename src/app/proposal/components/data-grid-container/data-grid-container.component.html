@@ -74,12 +74,19 @@
         gap: 6px;
       "
     >
-      @for (item of info.data["actions"]; track $index) {
+      @for (item of info.data["actions"]; track $index) { @if (item.name
+      =='add') {
       <i
-        class="dx-icon-{{ item.name }}"
+        (click)="openModal($event)"
+        class="dx-icon-{{ item.name }} icon pointer"
+        [ngStyle]="{ color: item.color, 'font-size': '20px' }"
+      ></i>
+      } @else {
+      <i
+        class="dx-icon-{{ item.name }} icon pointer"
         [ngStyle]="{ color: item.color, 'font-size': '24px' }"
       ></i>
-      }
+      } }
     </div>
   </div>
 

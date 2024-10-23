@@ -47,4 +47,8 @@ export class DataGridContainerComponent implements OnInit {
   onContentReady(e: DxDataGridTypes.ContentReadyEvent) {
     e.component.option('loadPanel.enabled', false);
   }
+
+  openModal(e: Event) {
+    alert('Choosing Pratice/Discipline...');
+  }
 }
