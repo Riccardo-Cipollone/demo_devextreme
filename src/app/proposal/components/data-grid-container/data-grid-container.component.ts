@@ -1,31 +1,31 @@
-import { JsonPipe, NgStyle } from '@angular/common';
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { DxDataGridModule, DxTemplateHost } from 'devextreme-angular';
+import { DxDataGridModule, DxLoadPanelModule } from 'devextreme-angular';
 import { ColoredBadgeDirective } from '../colored-badge.directive';
+import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import { Observable } from 'rxjs';
+import { PositionConfig } from 'devextreme/animation/position';
 
 @Component({
   selector: 'app-data-grid-container',
   standalone: true,
-  imports: [DxDataGridModule, JsonPipe, NgStyle, ColoredBadgeDirective],
+  imports: [
+    DxDataGridModule,
+    DxLoadPanelModule,
+    AsyncPipe,
+    NgStyle,
+    ColoredBadgeDirective,
+  ],
   templateUrl: './data-grid-container.component.html',
   styleUrl: './data-grid-container.component.scss',
 })
 export class DataGridContainerComponent implements OnInit {
+  @Input('source') gridSource$!: Observable<any[]>;
+  @Input() isLoading: boolean = false;
+
+  // loadPanelPosition: PositionConfig = { , at: 'center' };
   selectedQuarter: string[] = [];
 
-  @Input('source') gridSource: any[] = [];
-
-  // columns: string[];
-
-  constructor() {
-    // this.columns = [
-    //   'Prof. figure',
-    //   'Actions',
-    //   'Practice /\n Discipline',
-    //   'H',
-    //   ...this.selectedQuarter,
-    // ];
-  }
   ngOnInit(): void {
     this.selectedQuarter = [
       '7/10',
@@ -42,8 +42,13 @@ export class DataGridContainerComponent implements OnInit {
       '23/12',
     ];
   }
-  onCellPrepared(e: any) {
+
+  onCellPrepared(e: DxDataGridTypes.CellPreparedEvent) {
     e.cellElement.style.textAlign = 'center';
     e.cellElement.style.verticalAlign = 'middle';
+  }
+
+  onContentReady(e: DxDataGridTypes.ContentReadyEvent) {
+    e.component.option('loadPanel.enabled', false);
   }
 }

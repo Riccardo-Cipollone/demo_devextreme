@@ -1,13 +1,19 @@
+<dx-load-panel [visible]="isLoading" [shading]="true" width="600" height="300">
+  <dxo-position at="center" of="'#gridContainer'"> </dxo-position>
+</dx-load-panel>
+
 <dx-data-grid
   id="gridContainer"
   [allowColumnReordering]="false"
   [allowColumnResizing]="false"
-  [dataSource]="gridSource"
-  (onCellPrepared)="onCellPrepared($event)"
+  [dataSource]="gridSource$ | async"
   [columnAutoWidth]="true"
   [showBorders]="true"
+  (onCellPrepared)="onCellPrepared($event)"
+  (onContentReady)="onContentReady($event)"
 >
-  <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  <!-- <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling> -->
+
   <dxi-column
     [allowSorting]="false"
     dataField="figure"
