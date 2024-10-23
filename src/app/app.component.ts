@@ -6,7 +6,7 @@ import { ProposalPageComponent } from './proposal/pages/proposal-page/proposal-p
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DxButtonModule, ProposalPageComponent],
+  imports: [RouterOutlet, DxButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
