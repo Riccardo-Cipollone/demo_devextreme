@@ -1,6 +1,6 @@
 <dx-toolbar [items]="toolbarContent" id="toolbar"></dx-toolbar>
 <dx-drawer [openedStateMode]="selectedOpenMode" [position]="selectedPosition" [revealMode]="selectedRevealMode"
-  template="template" [(opened)]="isDrawerOpen" [height]="400" [closeOnOutsideClick]="false">
+  template="template" [(opened)]="isDrawerOpen" [closeOnOutsideClick]="false">
   <div *dxTemplate="let data of 'template'" style="width: 200px">
     <dx-list [items]="navigation" [width]="200" selectionMode="single"
       itemTemplate="links">

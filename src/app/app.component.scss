@@ -3,6 +3,11 @@
   overflow: visible;
 }
 
+::ng-deep .dx-drawer {
+  // temporary fix: trial banner causes some issues
+  height: calc(100% - 36px);
+}
+
 ::ng-deep .flex-container {
   display: flex;
   flex-direction: column;
@@ -54,6 +59,7 @@
   padding: 0 24px;
   width: 100%;
   background-color: var(--dx-component-color-bg);
+  overflow-y: auto;
 }
 
 ::ng-deep #content h2 {
