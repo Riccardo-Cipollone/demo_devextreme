@@ -56,7 +56,7 @@
 }
 
 ::ng-deep #content {
-  padding: 0 24px;
+  padding: 0 2rem;
   width: 100%;
   background-color: var(--dx-component-color-bg);
   overflow-y: auto;
@@ -69,3 +69,8 @@
 ::ng-deep .dx-button-mode-text .dx-icon  {
     color: white;
   }
+
+// temporary fix for drawer side colors
+:host ::ng-deep .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-active a {
+  color: white;
+}

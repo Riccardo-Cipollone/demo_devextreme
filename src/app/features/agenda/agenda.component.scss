@@ -1,0 +1,26 @@
+.dx-icon {
+    font-size: 24px;
+}
+.dx-icon-xlsfile {
+    color: #1D6F42;
+    cursor: pointer;
+}
+.dx-icon-check,
+.dx-icon-edit {
+    color: #494949;
+    cursor: pointer;
+}
+
+.dx-icon-email {
+    color: var(--dx-color-primary);
+    border: 1px solid var(--dx-color-primary);
+    border-radius: 50%;
+}
+
+:host ::ng-deep .dx-datagrid-rowsview, .dx-scrollable-container {
+    overflow: visible;
+}
+:host .dx-header-row {
+    background-color: var(--dx-color-primary);
+    color: white;
+}

@@ -6,3 +6,18 @@ body {
 body {
   margin: 0;
 }
+
+#agendaContainer .dx-datagrid .dx-row > td,
+#agendaContainer .dx-datagrid .dx-row > tr > td {
+  background-color: #e0e7ff;
+}
+
+#agendaContainer .dx-datagrid .dx-row-alt > td,
+#agendaContainer .dx-datagrid .dx-row-alt > tr > td {
+  background-color: #eff6ff;
+}
+
+#agendaContainer tr.dx-row.dx-column-lines.dx-header-row > td {
+  background-color: var(--dx-color-primary);
+  color: white;
+}

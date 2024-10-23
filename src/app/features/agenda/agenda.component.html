@@ -1,5 +1,51 @@
-<h1>Test datagrid per tabella</h1>
+<h1>Agenda</h1>
 <!-- Tabella datagrid semplice per agenda -->
-<dx-data-grid id="gridContainer" [dataSource]="customers" keyExpr="ID" [showBorders]="true">
-    <dxi-column *ngFor="let column of columns" [dataField]="column"></dxi-column>
+<div style="display: flex; justify-content: flex-end">
+    <dx-button type="default" style="margin-bottom: 1rem; font-weight: bold;">Create Workload</dx-button>
+</div>
+<dx-data-grid id="agendaContainer" [dataSource]="planningData" keyExpr="id" [showBorders]="true"
+    [showColumnLines]="true" [showRowLines]="true"
+    [rowAlternationEnabled]="true" dataRowTemplate="dataRowTemplateName">
+    <!-- <dxi-column *ngFor="let column of columns" [dataField]="column"></dxi-column> -->
+    <dxi-column [dataField]="'type'" title="Type"></dxi-column>
+    <dxi-column [dataField]="'notification'" title="'Notification'"></dxi-column>
+    <dxi-column [dataField]="'name'" title="'Name'"></dxi-column>
+    <dxi-column [dataField]="'startDate'" title="'Start Date'" dataType="date"></dxi-column>
+    <dxi-column [dataField]="'endDate'" title="'End Date'" dataType="date"></dxi-column>
+    <dxi-column [dataField]="'planningStatus'" title="'Planning Status'"></dxi-column>
+    <dxi-column [dataField]="'actions'" title="Actions"></dxi-column>
+
+    <ng-container *dxTemplate="let planning of 'dataRowTemplateName'">
+        <tr class="main-row" role="row">
+            <td role="gridcell">
+                @if (planning.data.requiresAction) {
+                <i class="dx-icon dx-list-item-icon dx-icon-email"
+                    style="font-size: 14px; position: absolute; left: -24px"></i>
+                }
+                {{ planning.data.type }}
+            </td>
+            <td role="gridcell">{{ planning.data.notification }}</td>
+            <td role="gridcell">{{ planning.data.name }}</td>
+            <td role="gridcell">{{ planning.data.startDate }}</td>
+            <td role="gridcell">{{ planning.data.endDate }}</td>
+            <td role="gridcell">{{ planning.data.planningStatus }}</td>
+            <td role="gridcell">
+                <!-- <dx-button icon="plus"></dx-button> -->
+                <!-- REPORT -->
+                @if (planning.data.actions === "Report") {
+                <i class="dx-icon dx-list-item-icon dx-icon-xlsfile"></i>
+                } @else if (planning.data.actions === "Accept") {
+                <!-- ACCEPT ICON -->
+                <i class="dx-icon dx-list-item-icon dx-icon-check"></i>
+                } @else {
+                <!-- EDIT ICON -->
+                <i class="dx-icon dx-list-item-icon dx-icon-edit"></i>
+                }
+            </td>
+        </tr>
+    </ng-container>
 </dx-data-grid>
+<div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem">
+    <dx-button type="default" style="font-weight: bold;">All Proposals / All Contracts</dx-button>
+    <dx-button type="default" style="font-weight: bold;">All Personnels</dx-button>
+</div>

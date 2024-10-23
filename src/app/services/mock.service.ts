@@ -11,6 +11,20 @@ export interface Customer {
     Fax: string;
 }
 
+export type PlanningNotification = 'New Proposal' | 'New Contract' | 'Lost' | 'Replanning';
+export type PlanningType = 'Proposal' | 'Contract';
+export interface PlanningData {
+    id?: number;
+    type: PlanningType;
+    notification: PlanningNotification;
+    name: string;
+    startDate: string;
+    endDate: string;
+    planningStatus: string;
+    actions: string;
+    requiresAction?: boolean;
+}
+
 const customers: Customer[] = [{
     ID: 1,
     CompanyName: 'Super Mart of the West',
@@ -103,6 +117,103 @@ const customers: Customer[] = [{
     Fax: '(630) 438-7801',
 }];
 
+const MOCK_PLANNING_DATA: PlanningData[] = [
+    {
+        type: "Proposal",
+        notification: "New Proposal",
+        name: "Proposal 1",
+        startDate: "01/01/2025",
+        endDate: "01/04/2025",
+        planningStatus: "160/170",
+        actions: "Report",
+        requiresAction: true
+    },
+    {
+        type: "Contract",
+        notification: "New Contract",
+        name: "Contract 2",
+        startDate: "10/05/2024",
+        endDate: "10/08/2025",
+        planningStatus: "0/400",
+        actions: "Report",
+        requiresAction: true
+    },
+    {
+        type: "Proposal",
+        notification: "Replanning",
+        name: "Proposal 3",
+        startDate: "18/05/2025",
+        endDate: "16/06/2025",
+        planningStatus: "350/300",
+        actions: "Report",
+        requiresAction: true
+    },
+    {
+        type: "Contract",
+        notification: "Replanning",
+        name: "Contract 4",
+        startDate: "18/12/2025",
+        endDate: "18/12/2026",
+        planningStatus: "120/230",
+        actions: "Report",
+        requiresAction: true
+    },
+    {
+        type: "Proposal",
+        notification: "Lost",
+        name: "Proposal 5",
+        startDate: "18/05/2025",
+        endDate: "01/11/2026",
+        planningStatus: "0/0",
+        actions: "Report"
+    },
+    {
+        type: "Proposal",
+        notification: "Replanning",
+        name: "Proposal 6",
+        startDate: "16/06/2025",
+        endDate: "16/06/2025",
+        planningStatus: "350/300",
+        actions: "Report"
+    },
+    {
+        type: "Contract",
+        notification: "Replanning",
+        name: "Contract 7",
+        startDate: "18/05/2024",
+        endDate: "19/06/2025",
+        planningStatus: "330/330",
+        actions: "Accept"
+    },
+    {
+        type: "Contract",
+        notification: "Replanning",
+        name: "Contract 7",
+        startDate: "18/05/2024",
+        endDate: "19/06/2025",
+        planningStatus: "190/190",
+        actions: "Modify"
+    },
+    {
+        type: "Proposal",
+        notification: "Replanning",
+        name: "Proposal 7",
+        startDate: "28/10/2024",
+        endDate: "22/07/2025",
+        planningStatus: "110/110",
+        actions: "Modify"
+    },
+    {
+        type: "Proposal",
+        notification: "Replanning",
+        name: "Proposal 8",
+        startDate: "08/02/2024",
+        endDate: "11/02/2026",
+        planningStatus: "80/80",
+        actions: "Report"
+    }
+];
+
 export class List {
     id: number = 0;
     text: string = "";
@@ -112,9 +223,9 @@ export class List {
 
 const navigation: List[] = [
     { id: 1, text: 'Homepage - Agenda', icon: 'home', path: 'home' },
-    { id: 2, text: 'Manage proposal', icon: 'taskhelpneeded', path: 'proposal' },
-    { id: 3, text: 'Manage Contract', icon: 'taskcomplete', path: 'contract' },
-    { id: 4, text: 'Manage Personnel', icon: 'group', path: 'personnel' },
+    { id: 2, text: 'Manage by Proposal', icon: 'taskhelpneeded', path: 'proposal' },
+    { id: 3, text: 'Manage by Contract', icon: 'taskcomplete', path: 'contract' },
+    { id: 4, text: 'Manage by Personnel', icon: 'group', path: 'personnel' },
 ];
 
 const text = `
@@ -140,5 +251,9 @@ export class MockService {
 
     getCustomers(): Customer[] {
         return customers;
+    }
+
+    getPlanningData(): PlanningData[] {
+        return MOCK_PLANNING_DATA.map((x, index) => ({ ...x, id: Date.now() + index }));
     }
 }

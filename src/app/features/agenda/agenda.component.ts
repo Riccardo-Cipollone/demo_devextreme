@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { DxDataGridModule } from 'devextreme-angular';
-import { Customer, MockService } from '../../services/mock.service';
+import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
+import { MockService, PlanningData } from '../../services/mock.service';
 
 @Component({
   selector: 'app-agenda',
   standalone: true,
-  imports: [CommonModule, DxDataGridModule],
+  imports: [CommonModule, DxDataGridModule, DxButtonModule],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent {
-  customers: Customer[];
-  columns = ['CompanyName', 'City', 'State', 'Phone', 'Fax'];
+  planningData: PlanningData[] = [];
+  // columns = ['Type', 'Notification', 'Name', 'Start Date', 'End Date', 'Planning Status', 'Actions'];
 
   constructor(private service: MockService) {
-    this.customers = service.getCustomers();
+    this.planningData = service.getPlanningData();
   }
 }
