@@ -1,5 +1,5 @@
 import { JsonPipe, NgStyle } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DxDataGridModule, DxTemplateHost } from 'devextreme-angular';
 import { ColoredBadgeDirective } from '../colored-badge.directive';
 
@@ -13,31 +13,11 @@ import { ColoredBadgeDirective } from '../colored-badge.directive';
 export class DataGridContainerComponent implements OnInit {
   selectedQuarter: string[] = [];
 
-  gridSource: any[] = [];
+  @Input('source') gridSource: any[] = [];
 
   // columns: string[];
 
   constructor() {
-    this.gridSource = [
-      {
-        figure: 'PEP',
-        actions: [{ name: 'add', color: '#00ff00' }],
-        area: [],
-        hours: { tot: 40, scheduled: 0 },
-        '7/10': 0,
-        '14/10': 0,
-        '21/10': 0,
-        '28/10': 0,
-        '04/11': 0,
-        '11/11': 0,
-        '18/11': 0,
-        '25/11': 0,
-        '02/12': 0,
-        '09/12': 0,
-        '16/12': 0,
-        '23/12': 0,
-      },
-    ];
     // this.columns = [
     //   'Prof. figure',
     //   'Actions',
@@ -64,5 +44,6 @@ export class DataGridContainerComponent implements OnInit {
   }
   onCellPrepared(e: any) {
     e.cellElement.style.textAlign = 'center';
+    e.cellElement.style.verticalAlign = 'middle';
   }
 }

@@ -5,7 +5,9 @@
   [dataSource]="gridSource"
   (onCellPrepared)="onCellPrepared($event)"
   [columnAutoWidth]="true"
+  [showBorders]="true"
 >
+  <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
   <dxi-column
     [allowSorting]="false"
     dataField="figure"
@@ -26,12 +28,13 @@
     [width]="120"
     dataField="area"
     caption="Practice / Discipline"
+    cellTemplate="areaTemplate"
     headerCellTemplate="titleHeaderTemplate"
   ></dxi-column>
   <dxi-column
     [allowSorting]="false"
     dataField="hours"
-    caption="H"
+    caption="Hrs"
     [width]="80"
     cellTemplate="hoursTemplate"
     headerCellTemplate="titleHeaderTemplate"
@@ -46,23 +49,56 @@
 
   <!-- Professional Figure CELL template -->
   <div *dxTemplate="let info of 'figureTemplate'">
+    @if (info.data['figure']!= '') {
     <div [appColoredBadge]="'#6679A0'">
       {{ info.data["figure"] }}
     </div>
+    }
   </div>
 
   <!-- Actions CELL template -->
   <div *dxTemplate="let info of 'actionsTemplate'">
     <!-- // TODO pipe per trasformare sto schifo -->
-    @for (item of info.data["actions"]; track $index) {
-    <i class="dx-icon-{{ item.name }}" [ngStyle]="{ color: item.color }"></i>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      "
+    >
+      @for (item of info.data["actions"]; track $index) {
+      <i
+        class="dx-icon-{{ item.name }}"
+        [ngStyle]="{ color: item.color, 'font-size': '24px' }"
+      ></i>
+      }
+    </div>
+  </div>
+
+  <!-- Area CELL template -->
+  <div *dxTemplate="let info of 'areaTemplate'">
+    @if (info.data['area']) {
+    <div appColoredBadge [borderColor]="'#6679A0'">
+      {{ info.data["area"] }}
+    </div>
     }
   </div>
 
   <!-- Hours CELL template -->
-  <div *dxTemplate="let info of 'hoursTemplate'" [appColoredBadge]="'yellow'">
+  <div *dxTemplate="let info of 'hoursTemplate'">
     <!-- //TODO pipe per trasformare sto schifo -->
-    <div>{{ info.data["hours"].scheduled }}/{{ info.data["hours"].tot }}</div>
+    <div
+      [appColoredBadge]="
+        info.data['hours'].scheduled < info.data['hours'].tot
+          ? 'yellow'
+          : 'lightgreen'
+      "
+    >
+      <div [ngStyle]="{ color: '#000' }">
+        {{ info.data["hours"].scheduled }}/{{ info.data["hours"].tot }}
+      </div>
+    </div>
   </div>
 
   <!-- Title HEADER template -->
