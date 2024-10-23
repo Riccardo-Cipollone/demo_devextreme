@@ -24,13 +24,11 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'demo_devextreme';
   test() {
     alert('Zio pera');
-  }
   }
 
   @ViewChild(DxDrawerComponent, { static: false }) drawer!: DxDrawerComponent;
