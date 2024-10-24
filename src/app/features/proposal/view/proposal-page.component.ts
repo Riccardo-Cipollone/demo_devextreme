@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DataGridContainerComponent } from '../../components/data-grid-container/data-grid-container.component';
-import { ActionButtonComponent } from '../../components/action-button/action-button.component';
-import { ProposalService } from '../../services/proposal.service';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-
 import { DxLoadPanelModule } from 'devextreme-angular';
+import { DataGridContainerComponent } from './components/data-grid-container/data-grid-container.component';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
+import { ProposalService } from '../services/proposal.service';
 
 @Component({
   selector: 'app-proposal-page',
