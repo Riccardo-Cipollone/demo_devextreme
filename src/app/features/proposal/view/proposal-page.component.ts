@@ -5,6 +5,7 @@ import { DxLoadPanelModule } from 'devextreme-angular';
 import { DataGridContainerComponent } from './components/data-grid-container/data-grid-container.component';
 import { ActionButtonComponent } from './components/action-button/action-button.component';
 import { ProposalService } from '../services/proposal.service';
+import { QuartersToolbarComponent } from './components/quarters-toolbar/quarters-toolbar.component';
 
 @Component({
   selector: 'app-proposal-page',
@@ -14,12 +15,15 @@ import { ProposalService } from '../services/proposal.service';
     DxLoadPanelModule,
     ActionButtonComponent,
     AsyncPipe,
+    QuartersToolbarComponent,
   ],
   templateUrl: './proposal-page.component.html',
   styleUrl: './proposal-page.component.scss',
 })
 export class ProposalPageComponent implements OnInit {
   dataSource$: Observable<any[]> = EMPTY;
+
+  startingDate: Date = new Date();
   isLoading: boolean = false;
   sourceSubscription!: Subscription;
   selectedQuarter: string[] = [

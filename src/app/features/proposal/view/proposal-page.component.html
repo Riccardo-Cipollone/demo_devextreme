@@ -1,26 +1,33 @@
-<header>
-  <section class="action_buttons">
-    <app-action-button helpText="Publish" bgColor="#3367D6" textColor="#fff">
-    </app-action-button>
-    <app-action-button helpText="Save" bgColor="#BDBDBD"></app-action-button>
-    <app-action-button
-      helpText="Start staffing"
-      textColor="#fff"
-      bgColor="#ED7D31"
-    ></app-action-button>
+<!-- //TODO Think about using a grid to align toolbar with right side of datagrid -->
+<main>
+  <header>
+    <section class="action_buttons">
+      <app-action-button helpText="Publish" bgColor="#3367D6" textColor="#fff">
+      </app-action-button>
+      <app-action-button helpText="Save" bgColor="#BDBDBD"></app-action-button>
+      <app-action-button
+        helpText="Start staffing"
+        textColor="#fff"
+        bgColor="#ED7D31"
+      ></app-action-button>
+    </section>
+    <section class="filters">
+      <div>Filters goes here</div>
+    </section>
+  </header>
+  <dx-load-panel
+    [visible]="isLoading"
+    [shading]="true"
+    shadingColor="'#000000'"
+    [showPane]="false"
+  >
+    <dxo-position at="center"> </dxo-position>
+  </dx-load-panel>
+  <section id="proposalContainer" style="height: 75vh">
+    <app-data-grid-container [source]="dataSource$"></app-data-grid-container>
   </section>
-  <section class="filters">
-    <div>Filters goes here</div>
-  </section>
-</header>
-<dx-load-panel
-  [visible]="isLoading"
-  [shading]="true"
-  shadingColor="'#000000'"
-  [showPane]="false"
->
-  <dxo-position at="center"> </dxo-position>
-</dx-load-panel>
-<main id="proposalContainer" style="height: 80vh">
-  <app-data-grid-container [source]="dataSource$"></app-data-grid-container>
+
+  <footer>
+    <app-quarters-toolbar [startingDate]="startingDate"></app-quarters-toolbar>
+  </footer>
 </main>

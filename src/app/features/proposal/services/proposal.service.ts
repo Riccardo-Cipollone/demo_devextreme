@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
+import { Project } from '../business/entities/project.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -147,6 +148,31 @@ export class ProposalService {
   ];
 
   get source(): Observable<any[]> {
-    return of(this.dataSource).pipe(delay(2000));
+    var x: Project = {
+      ...new Project(
+        '',
+        [],
+        [],
+        { tot: 40, scheduled: 0 },
+        {
+          '7/10': 15,
+          '14/10': 15,
+          '21/10': 15,
+          '28/10': 15,
+          '04/11': 15,
+          '11/11': 10,
+          '18/11': 0,
+          '25/11': 0,
+          '02/12': 0,
+          '09/12': 0,
+          '16/12': 0,
+          '23/12': 0,
+        }
+      ),
+    };
+
+    console.log(x);
+
+    return of(this.dataSource).pipe(delay(1000));
   }
 }

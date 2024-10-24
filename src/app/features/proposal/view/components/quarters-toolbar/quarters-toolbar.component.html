@@ -1,0 +1,13 @@
+<main class="quarter-navigation">
+  <button (click)="goToPreviousQuarter()">«</button>
+  @for (quarter of quartersToShow; track $index) {
+  <button
+    [class.active]="
+      quarter === 'Q' + currentQuarter + '/' + currentYear.toString().slice(-2)
+    "
+  >
+    {{ quarter }}
+  </button>
+  }
+  <button (click)="goToNextQuarter()">»</button>
+</main>
