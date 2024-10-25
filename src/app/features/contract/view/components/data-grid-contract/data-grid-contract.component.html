@@ -1,1 +1,123 @@
-<p>data-grid-contract works!</p>
+<dx-data-grid id="gridContainer" [allowColumnReordering]="false" [allowColumnResizing]="false"
+    [dataSource]="gridSource$ | async" [columnAutoWidth]="true" [showBorders]="true" [showRowLines]="true" height="97%"
+    (onCellPrepared)="onCellPrepared($event)" (onContentReady)="onContentReady($event)">
+    <!-- <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling> -->
+    <dxo-scrolling mode="standard" showScrollbar="always">
+        <!-- or "virtual" | "infinite" -->
+    </dxo-scrolling>
+
+    <dxi-column 
+        [allowSorting]="false" 
+        dataField="figure" 
+        caption="Practice / Discipline" 
+        cellTemplate="figureTemplate"
+        headerCellTemplate="titleHeaderTemplate">
+    </dxi-column>
+    <dxi-column 
+        [allowSorting]="false" 
+        [width]="120" 
+        dataField="actions" 
+        caption="Prof. figures / Resources"
+        cellTemplate="actionsTemplate" 
+        headerCellTemplate="titleHeaderTemplate">
+    </dxi-column>
+    <dxi-column 
+        [allowSorting]="false" 
+        [width]="120"
+        dataField="area" 
+        caption="H" 
+        cellTemplate="areaTemplate"
+        headerCellTemplate="titleHeaderTemplate">
+    </dxi-column>
+    <dxi-column 
+        [allowSorting]="false" 
+        dataField="hours" 
+        caption="HC" 
+        cellTemplate="hoursTemplate"
+        headerCellTemplate="titleHeaderTemplate">
+    </dxi-column>
+    @for(element of selectedQuarter; track $index){
+    <dxi-column [allowSorting]="false" [dataField]="element" headerCellTemplate="weeklyHoursHeaderTemplate"
+        cellTemplate="weeklyHoursTemplate"></dxi-column>
+    }
+
+    <!-- Professional Figure CELL template -->
+    <div *dxTemplate="let info of 'figureTemplate'">
+        @if (info.data['figure']!= '') {
+        <div [appColoredBadge]="'#6679A0'">
+            {{ info.data["figure"] }}
+        </div>
+        }
+    </div>
+
+    <!-- Actions CELL template -->
+    <div *dxTemplate="let info of 'actionsTemplate'">
+        <!-- // TODO pipe per trasformare sto schifo -->
+        <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      ">
+            @for (item of info.data["actions"]; track $index) { @if (item.name
+            =='add') {
+            <i (click)="openModal($event)" class="dx-icon-{{ item.name }} icon pointer"
+                [ngStyle]="{ color: item.color, 'font-size': '20px' }"></i>
+            } @else {
+            <i class="dx-icon-{{ item.name }} icon pointer" [ngStyle]="{ color: item.color, 'font-size': '24px' }"></i>
+            } }
+        </div>
+    </div>
+
+    <!-- Area CELL template -->
+    <div *dxTemplate="let info of 'areaTemplate'">
+        @if (info.data['area']) {
+        <div appColoredBadge [borderColor]="'#6679A0'">
+            {{ info.data["area"] }}
+        </div>
+        }
+    </div>
+
+    <!-- Hours CELL template -->
+    <div *dxTemplate="let info of 'hoursTemplate'">
+        <!-- //TODO pipe per trasformare sto schifo -->
+        <div [appColoredBadge]="
+        info.data['hours'].scheduled < info.data['hours'].tot
+          ? 'yellow'
+          : 'lightgreen'
+      ">
+            <div [ngStyle]="{ color: '#000' }">
+                {{ info.data["hours"].scheduled }}/{{ info.data["hours"].tot }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Title HEADER template -->
+    <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <div class="header-badge" [appColoredBadge]="'#1f4e79'">
+            {{ info.column.caption }}
+        </div>
+    </div>
+
+    <!-- Weekly Hours HEADER template -->
+    <div *dxTemplate="let info of 'weeklyHoursHeaderTemplate'">
+        <div class="header-date">
+            {{ info.column.dataField }}
+        </div>
+    </div>
+    <!-- Weekly Hours CELL template -->
+    <div *dxTemplate="let info of 'weeklyHoursTemplate'" 
+        style="display: flex; align-items: center; justify-content: space-evenly; gap: 4px">
+        @if (info.data[info.column.dataField] || info.data[info.column.dataField] == 0) {
+            <div class="grey-box">
+                <div>40</div>
+            </div>
+            <dx-text-box height="30" width="30" [value]="info.data[info.column.dataField]"></dx-text-box>
+            <div class="grey-box">
+                <div>0</div>
+            </div>
+        }
+    </div>
+</dx-data-grid>
+<!-- Resource modal -->
+<!-- <app-resources-modal [isPopupVisible]="isPopupVisible" (closeModalEmitter)="handleCloseModal($event)"></app-resources-modal> -->

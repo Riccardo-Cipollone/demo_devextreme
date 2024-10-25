@@ -1,0 +1,17 @@
+header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .action_buttons {
+      display: flex;
+      width: 400px;
+      justify-content: left;
+      gap: 16px;
+      align-items: center;
+    }
+    .filters {
+      flex-basis: 500px;
+    }
+  }
+  
