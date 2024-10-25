@@ -138,6 +138,6 @@ export class ContractService {
 
     console.log(x);
 
-    return of(this.dataSource).pipe(delay(1000));
+    return of(this.dataSource).pipe(delay(500));
   }
 }
