@@ -8,32 +8,32 @@
 
     <dxi-column 
         [allowSorting]="false" 
-        dataField="figure" 
+        dataField="area" 
         caption="Practice / Discipline" 
-        cellTemplate="figureTemplate"
+        cellTemplate="areaTemplate"
         headerCellTemplate="titleHeaderTemplate">
     </dxi-column>
     <dxi-column 
         [allowSorting]="false" 
         [width]="120" 
-        dataField="actions" 
+        dataField="figure" 
         caption="Prof. figures / Resources"
-        cellTemplate="actionsTemplate" 
+        cellTemplate="figureTemplate" 
         headerCellTemplate="titleHeaderTemplate">
     </dxi-column>
     <dxi-column 
         [allowSorting]="false" 
         [width]="120"
-        dataField="area" 
+        dataField="hours" 
         caption="H" 
-        cellTemplate="areaTemplate"
+        cellTemplate="hoursTemplate"
         headerCellTemplate="titleHeaderTemplate">
     </dxi-column>
     <dxi-column 
         [allowSorting]="false" 
         dataField="hours" 
         caption="HC" 
-        cellTemplate="hoursTemplate"
+        cellTemplate="hoursCTemplate"
         headerCellTemplate="titleHeaderTemplate">
     </dxi-column>
     @for(element of selectedQuarter; track $index){
@@ -76,6 +76,9 @@
             {{ info.data["area"] }}
         </div>
         }
+        <!-- <div appColoredBadge [borderColor]="'#6679A0'">
+            40/40
+        </div> -->
     </div>
 
     <!-- Hours CELL template -->
@@ -88,6 +91,20 @@
       ">
             <div [ngStyle]="{ color: '#000' }">
                 {{ info.data["hours"].scheduled }}/{{ info.data["hours"].tot }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Hours CELL template -->
+    <div *dxTemplate="let info of 'hoursCTemplate'">
+        <!-- //TODO pipe per trasformare sto schifo -->
+        <div [appColoredBadge]="
+        info.data['hours'].scheduled < info.data['hours'].tot
+          ? 'yellow'
+          : 'lightgreen'
+      ">
+            <div [ngStyle]="{ color: '#000' }">
+                {{ info.data["hours"].scheduled }}
             </div>
         </div>
     </div>
