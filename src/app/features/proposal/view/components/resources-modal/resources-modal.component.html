@@ -1,0 +1,49 @@
+<dx-popup contentTemplate="popup-content" [(visible)]="isPopupVisible" title="Insert resource" position="center"
+    [hideOnOutsideClick]="true" [showTitle]="true" [height]="400" [width]="600" [resizeEnabled]="true"
+    [dragEnabled]="true" (onHidden)="test($event)">
+    <div *dxTemplate="let data of 'popup-content'">
+        @if (stepCounter === 0) {
+            <h3 style="margin: 0; margin-bottom: 1rem;">Select the type of resource to add</h3>
+            <dx-select-box [dataSource]="resourceTypeOptions" [(ngModel)]="resourceType">
+            </dx-select-box>
+        }
+        @switch (resourceType) {
+            @case ('Professional figure') {
+            <!-- Step 1 for professional figure -->
+            @if (stepCounter === 1) {
+                <div style="display: flex; flex-direction: column; gap: 1rem">
+                    <dx-select-box [dataSource]="professionOptions" label="Select a profession" labelMode="outside">
+                    </dx-select-box>
+                    <dx-select-box [dataSource]="countryOptions" label="Select a country" labelMode="outside">
+                    </dx-select-box>
+                </div>
+                }
+            }
+            @case ('Practice / Discipline') {
+            <!-- Step 1 for practice discipline -->
+                @if (stepCounter === 1) {
+                <div style="display: flex; flex-direction: column; gap: 1rem">
+                    <dx-select-box [dataSource]="professionOptions" label="Select a profession" labelMode="outside">
+                    </dx-select-box>
+                    <dx-select-box [dataSource]="countryOptions" label="Select a country" labelMode="outside">
+                    </dx-select-box>
+                </div>
+                }
+            <!-- Step 2 for practice discipline -->
+                @if (stepCounter === 2) {
+                <div style="display: flex; flex-direction: column; gap: 1rem">
+                    <dx-select-box [dataSource]="groupOptions" label="Select a group" labelMode="outside">
+                    </dx-select-box>
+                    <dx-select-box [dataSource]="subGroupOptions" label="Select a subgroup" labelMode="outside">
+                    </dx-select-box>
+                </div>
+                }
+            }
+        }
+    </div>
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" [options]="backButtonOptions">
+    </dxi-toolbar-item>
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" [options]="forwardButtonOptions"
+        [disabled]="!resourceType">
+    </dxi-toolbar-item>
+</dx-popup>

@@ -1,30 +1,30 @@
 /* ... */
-::ng-deep .demo-container {
+:host ::ng-deep .demo-container {
   overflow: visible;
 }
 
-::ng-deep .dx-drawer {
+:host ::ng-deep .dx-drawer {
   // temporary fix: trial banner causes some issues
   height: calc(100% - 36px);
 }
 
-::ng-deep .flex-container {
+:host ::ng-deep .flex-container {
   display: flex;
   flex-direction: column;
 }
 
-::ng-deep .dx-drawer-content {
+:host ::ng-deep .dx-drawer-content {
   display: flex;
 }
 
-::ng-deep .dx-toolbar .dx-toolbar-items-container {
+:host ::ng-deep #hometoolbar.dx-toolbar .dx-toolbar-items-container {
   background-color: var(--dx-color-primary);
   // box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
   // padding: 5px 10px;
   z-index: 10000;
 }
 
-::ng-deep .dx-list.panel-list {
+:host ::ng-deep .dx-list.panel-list {
   height: 400px;
   padding-top: 12px;
   background-color: var(--dx-color-main-bg);
@@ -33,11 +33,6 @@
 .options {
   padding: 20px;
   background-color: rgba(191, 191, 191, 0.15);
-}
-
-::ng-deep .options-container {
-  display: flex;
-  align-items: center;
 }
 
 .caption {
@@ -51,24 +46,24 @@
   margin-right: 50px;
 }
 
-::ng-deep label {
+:host ::ng-deep label {
   font-weight: bold;
 }
 
-::ng-deep #content {
+:host ::ng-deep #content {
   padding: 0 2rem;
   width: 100%;
   background-color: var(--dx-component-color-bg);
   overflow-y: auto;
 }
 
-::ng-deep #content h2 {
+:host ::ng-deep #content h2 {
   font-size: 26px;
 }
 
-::ng-deep .dx-button-mode-text .dx-icon  {
+:host ::ng-deep .dx-button-mode-text .dx-icon  {
     color: white;
-  }
+}
 
 // temporary fix for drawer side colors
 :host ::ng-deep .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-active a {

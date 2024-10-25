@@ -1,11 +1,14 @@
 <h1>Agenda</h1>
 <!-- Tabella datagrid semplice per agenda -->
-<div style="display: flex; justify-content: flex-end">
-    <dx-button type="default" style="margin-bottom: 1rem; font-weight: bold;">Create Workload</dx-button>
+<div style="display: flex; justify-content: flex-end; gap: 1rem; margin-bottom: 1rem">
+    <dx-autocomplete placeholder="Type first name..." [(value)]="firstName" [dataSource]="names"
+        (onValueChanged)="updateEmployeeInfo($event)">
+    </dx-autocomplete>
+    <dx-button type="default" style="font-weight: bold;">Create Workload</dx-button>
 </div>
+<!-- <pre>{{test | json}}</pre> -->
 <dx-data-grid id="agendaContainer" [dataSource]="planningData" keyExpr="id" [showBorders]="true"
-    [showColumnLines]="true" [showRowLines]="true"
-    [rowAlternationEnabled]="true" dataRowTemplate="dataRowTemplateName">
+    [showColumnLines]="true" [showRowLines]="true" [rowAlternationEnabled]="true" dataRowTemplate="dataRowTemplateName">
     <!-- <dxi-column *ngFor="let column of columns" [dataField]="column"></dxi-column> -->
     <dxi-column [dataField]="'type'" title="Type"></dxi-column>
     <dxi-column [dataField]="'notification'" title="'Notification'"></dxi-column>

@@ -1,9 +1,11 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { DxDataGridModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxDataGridModule, DxPopupModule, DxSelectBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import { ColoredBadgeDirective } from '../colored-badge.directive';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { EMPTY, Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { ResourcesModalComponent } from '../resources-modal/resources-modal.component';
 
 @Component({
   selector: 'app-data-grid-container',
@@ -14,6 +16,10 @@ import { EMPTY, Observable } from 'rxjs';
     AsyncPipe,
     NgStyle,
     ColoredBadgeDirective,
+    DxSelectBoxModule,
+    DxPopupModule,
+    FormsModule,
+    ResourcesModalComponent
   ],
   templateUrl: './data-grid-container.component.html',
   styleUrl: './data-grid-container.component.scss',
@@ -36,6 +42,7 @@ export class DataGridContainerComponent implements OnInit {
     '16/12',
     '23/12',
   ];
+  isPopupVisible: boolean = false;
 
   ngOnInit(): void {}
 
@@ -49,6 +56,10 @@ export class DataGridContainerComponent implements OnInit {
   }
 
   openModal(e: Event) {
-    alert('Choosing Pratice/Discipline...');
+    this.isPopupVisible = !this.isPopupVisible;
+  }
+
+  handleCloseModal(event: boolean) {
+    this.isPopupVisible = event;
   }
 }
