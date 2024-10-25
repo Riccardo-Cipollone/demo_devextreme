@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './contract.component.html',
   styleUrl: './contract.component.scss'
 })
-export class ContractComponent {
+export class ContractPageComponent {
 
 }
