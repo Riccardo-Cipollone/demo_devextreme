@@ -2,10 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { DxLoadPanelModule } from 'devextreme-angular';
+
 import { DataGridContainerComponent } from './components/data-grid-container/data-grid-container.component';
 import { ActionButtonComponent } from './components/action-button/action-button.component';
-import { ProposalService } from '../services/proposal.service';
 import { QuartersToolbarComponent } from './components/quarters-toolbar/quarters-toolbar.component';
+
+import { ProposalService } from './services/proposal.service';
+
+import { WorkloadRepository } from '../../../domain/repositories/workload.repositories';
+import { WorkloadRepositoryImpl } from '../../../data/repositories/workload/workload-impl.repository';
+import { saveDraftProvider } from '../../../domain/use-cases/usecases.factory';
 
 @Component({
   selector: 'app-proposal-page',
@@ -16,6 +22,11 @@ import { QuartersToolbarComponent } from './components/quarters-toolbar/quarters
     ActionButtonComponent,
     AsyncPipe,
     QuartersToolbarComponent,
+  ],
+  providers: [
+    saveDraftProvider,
+    ProposalService,
+    { provide: WorkloadRepository, useClass: WorkloadRepositoryImpl },
   ],
   templateUrl: './proposal-page.component.html',
   styleUrl: './proposal-page.component.scss',

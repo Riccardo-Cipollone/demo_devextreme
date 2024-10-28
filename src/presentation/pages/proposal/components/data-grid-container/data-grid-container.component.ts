@@ -1,7 +1,12 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { DxDataGridModule, DxPopupModule, DxSelectBoxModule, DxTextBoxModule } from 'devextreme-angular';
-import { ColoredBadgeDirective } from '../colored-badge.directive';
+import {
+  DxDataGridModule,
+  DxPopupModule,
+  DxSelectBoxModule,
+  DxTextBoxModule,
+} from 'devextreme-angular';
+import { ColoredBadgeDirective } from '../../directives/colored-badge.directive';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { EMPTY, Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +24,7 @@ import { ResourcesModalComponent } from '../resources-modal/resources-modal.comp
     DxSelectBoxModule,
     DxPopupModule,
     FormsModule,
-    ResourcesModalComponent
+    ResourcesModalComponent,
   ],
   templateUrl: './data-grid-container.component.html',
   styleUrl: './data-grid-container.component.scss',

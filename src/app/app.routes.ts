@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
-import { AgendaComponent } from './features/agenda/agenda.component';
-import { ProposalPageComponent } from './features/proposal/view/proposal-page.component';
-import { ContractPageComponent } from './features/contract/view/contract-page.component';
-
+import { AgendaComponent } from '../presentation/pages/agenda/agenda.component';
+import { ProposalPageComponent } from '../presentation/pages/proposal/proposal-page.component';
+import { ContractPageComponent } from '../presentation/pages/contract/contract-page.component';
 
 export const routes: Routes = [
   { path: 'home', component: AgendaComponent },

@@ -6,9 +6,13 @@ import {
   DxRadioGroupModule,
   DxToolbarModule,
 } from 'devextreme-angular';
-import { List, MockService } from './services/mock.service';
+
 import { DxDrawerComponent, DxDrawerTypes } from 'devextreme-angular/ui/drawer';
 import { CommonModule } from '@angular/common';
+import {
+  List,
+  MockService,
+} from '../presentation/pages/agenda/services/mock.service';
 
 @Component({
   selector: 'app-root',

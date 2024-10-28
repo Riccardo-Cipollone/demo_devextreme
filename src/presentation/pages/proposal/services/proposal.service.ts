@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
-import { Project } from '../business/entities/project.entity';
+import { Project } from '../../../../domain/models/project.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProposalService {
   private dataSource: any[] = [
     {
@@ -147,6 +145,35 @@ export class ProposalService {
     },
   ];
 
+  // constructor(private saveProposal: SaveProposal) {}
+
+  // async saveAsDraft(project: Project) {
+  //   this.saveProposal.execute({
+  //     project: {
+  //       ...new Project(
+  //         '',
+  //         [],
+  //         [],
+  //         { tot: 40, scheduled: 0 },
+  //         {
+  //           '7/10': 15,
+  //           '14/10': 15,
+  //           '21/10': 15,
+  //           '28/10': 15,
+  //           '04/11': 15,
+  //           '11/11': 10,
+  //           '18/11': 0,
+  //           '25/11': 0,
+  //           '02/12': 0,
+  //           '09/12': 0,
+  //           '16/12': 0,
+  //           '23/12': 0,
+  //         }
+  //       ),
+  //     },
+  //   });
+  // }
+
   get source(): Observable<any[]> {
     var x: Project = {
       ...new Project(
@@ -173,6 +200,6 @@ export class ProposalService {
 
     console.log(x);
 
-    return of(this.dataSource).pipe(delay(1000));
+    return of(this.dataSource).pipe(delay(500));
   }
 }
